@@ -2,15 +2,15 @@ import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
 
 import { nanoid } from 'nanoid';
 const INITIAL_CONTACTS = [
-  { id: nanoid(6), name: 'Rosie', number: '122-12-12' },
-  { id: nanoid(6), name: 'Hermione', number: '433-43-43' },
-  { id: nanoid(6), name: 'Ark', number: '655-65-65' },
-  { id: nanoid(6), name: 'Ann', number: '277-77-77' },
+  { id: nanoid(7), name: 'Rosie', number: '122-12-12' },
+  { id: nanoid(7), name: 'Hermione', number: '433-43-43' },
+  { id: nanoid(7), name: 'Ark', number: '655-65-65' },
+  { id: nanoid(7), name: 'Ann', number: '277-77-77' },
 ];
 export const addContact = createAction('contacts/add', (name, number) => {
   return {
     payload: {
-      id: nanoid(),
+      id: nanoid(7),
       name,
       number,
     },
@@ -28,8 +28,6 @@ const items = createReducer(INITIAL_CONTACTS, {
   [deleteContact.type]: (state, action) =>
     state.filter(({ id }) => id !== action.payload),
 });
-
-// Више проверку лучше оставить не в редаксе!!!
 
 const filter = createReducer('', {
   [filterContact.type]: (_, action) => action.payload.toLowerCase(),
