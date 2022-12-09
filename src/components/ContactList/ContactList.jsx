@@ -5,7 +5,7 @@ import {
   ContactTxt,
 } from 'components/Style/Element.styled';
 import { FaUserAlt } from 'react-icons/fa';
-import { deleteContact } from 'redux/store';
+import { deleteContact } from 'redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
