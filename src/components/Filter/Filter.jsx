@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContact } from 'redux/actions';
+import { filterContact } from 'redux/phonebookSlice';
 import { Input, P } from 'components/Style/Element.styled';
 
 export const Filter = () => {

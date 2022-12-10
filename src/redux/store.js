@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { rootReducer } from './redusers';
+import { phonebookSlice } from './phonebookSlice';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +18,7 @@ const persistConfig = {
   whitelist: ['contacts'],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, phonebookSlice.reducer);
 
 export const store = configureStore({
   reducer: persistedReducer,

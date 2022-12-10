@@ -5,22 +5,26 @@ import {
   ContactTxt,
 } from 'components/Style/Element.styled';
 import { FaUserAlt } from 'react-icons/fa';
-import { deleteContact } from 'redux/actions';
+import { deleteContact } from 'redux/phonebookSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
+
   const deleteContactById = contactId => {
     dispatch(deleteContact(contactId));
   };
-  const contacts = useSelector(state => state.contacts);
+
   const searchFilter = useSelector(state => state.filter);
+
+  const serchFilterToLowerCase = searchFilter.toLowerCase();
 
   const getVisibleContacts = () => {
     if (searchFilter !== '') {
-      return contacts.filter(({ name }) =>
-        name.toLowerCase().includes(searchFilter)
+      return contacts.filter(({ userName }) =>
+        userName.toLowerCase().includes(serchFilterToLowerCase)
       );
     }
     return contacts;
@@ -30,12 +34,12 @@ export const ContactList = () => {
 
   return (
     <Contacts>
-      {visibleContacts.map(({ name, number, id }) => {
+      {visibleContacts.map(({ userName, number, id }) => {
         return (
           <ContactItem key={id}>
             <FaUserAlt />
             <ContactTxt>
-              {name} : {number}
+              {userName} : {number}
             </ContactTxt>
             <Button type="button" onClick={() => deleteContactById(id)}>
               Delete
